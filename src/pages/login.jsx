@@ -41,7 +41,7 @@ const Register = styled.h2`
   }
 `
 
-const Login = () => {
+const Login = ({history}) => {
   const [frmData, setFrmData] = useState({});
   
   const handleChange = useCallback((e) => {
@@ -65,9 +65,13 @@ const Login = () => {
       url: '/api/user',
       data: frmData
     })
-        .then(res => console.log(res))
-        .catch(err => console.error(err))
-  }, [frmData])
+        .then(() => {
+          history.push('/main');
+        })
+        .catch(() => {
+          alert("올바르지 않은 이메일입니다.");
+        });
+  }, [frmData, history])
   
   return (
       <Cont>
