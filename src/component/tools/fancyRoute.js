@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
+import './fancyRoute.css'
 import { useConstructor } from '../../hooks/useConstructor';
 
 const FancyRoute = (props) => {
