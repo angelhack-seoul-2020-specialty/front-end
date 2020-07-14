@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TextField } from '../component/UI/molecules/textField';
 import { PasswordField } from '../component/UI/molecules/passwordField';
 import { Button } from '../component/UI/atoms/button';
-// import axios from 'axios';
+import { query } from '../lib/qyery';
 
 const Cont = styled.div`
   display: grid;
@@ -55,6 +55,13 @@ const Login = () => {
   
   const handleSubmit = useCallback((e) => {
     e.preventDefault()
+    query({
+      method: 'post',
+      url: '/api/user',
+      data: frmData
+    })
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
   }, [frmData])
   
   return (
