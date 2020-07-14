@@ -15,7 +15,7 @@ const Cont = styled.div`
   }
 `;
 
-const PasswordField = ({onChange}) => {
+const PasswordField = ({onChange, required}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [valueLength, setValueLength] = useState(0);
   
@@ -37,6 +37,7 @@ const PasswordField = ({onChange}) => {
             name="password"
             type={showPassword ? 'text' : 'password'}
             onChange={handleChange}
+            required={required}
         />
         
         {valueLength ? (
