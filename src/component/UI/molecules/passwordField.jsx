@@ -27,14 +27,14 @@ const PasswordField = ({onChange}) => {
   const handleChange = useCallback((e) => {
     const {value} = e.target;
     setValueLength(value.length);
-    onChange({target: {name: 'password', value}});
+    onChange(e)
   }, [onChange]);
   
   return (
       <Cont>
         <TextField
             _label="password"
-            _name="password"
+            name="password"
             type={showPassword ? 'text' : 'password'}
             onChange={handleChange}
         />

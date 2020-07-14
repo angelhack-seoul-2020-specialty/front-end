@@ -9,12 +9,12 @@ const Cont = styled.div`
 `;
 
 const TextField = (props) => {
-  const { _label, _name } = props;
+  const { _label, name } = props;
   
   return (
       <Cont>
-        <Label htmlFor={`field_${_name}`}>{_label}</Label>
-        <Field {...props} id={`field_${_name}`} />
+        <Label htmlFor={`field_${name}`}>{_label}</Label>
+        <Field {...props} id={`field_${name}`} />
       </Cont>
   );
 };
