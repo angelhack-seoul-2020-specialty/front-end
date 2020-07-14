@@ -6,6 +6,7 @@ import { useConstructor } from '../../hooks/useConstructor';
 
 const FancyRoute = (props) => {
   useConstructor(() => {
+    nprogress.configure({ parent: '#root' });
     nprogress.start();
   });
   
