@@ -66,10 +66,15 @@ const Login = ({history}) => {
       data: frmData
     })
         .then(() => {
-          history.push('/main');
+          history.push('/login-type');
         })
-        .catch(() => {
-          alert("올바르지 않은 이메일입니다.");
+        .catch((err) => {
+          console.log(err)
+          if (err.include('401')) {
+              alert('올바르지 않은 이메일입니다.')
+          } else {
+              alert('서버에서 요청을 처리하던 도중 문제가 발생했습니다.')
+          }
         });
   }, [frmData, history])
   
