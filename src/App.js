@@ -1,10 +1,17 @@
-import React from 'react';
-import { Switch } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { Switch, withRouter } from 'react-router-dom';
 import { FancyRoute } from './component/tools/fancyRoute';
 import { Helmet } from 'react-helmet';
 import routes from './routes/routes';
 
-function App() {
+function App({history}) {
+  useEffect(() => {
+    if (!document.cookie.includes("access_token_cookie")) {
+      console.log('redirect')
+      history.replace('/login')
+    }
+  }, [history])
+  
   return (
     <>
       <Helmet>
@@ -20,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

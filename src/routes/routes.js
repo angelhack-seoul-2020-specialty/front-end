@@ -4,6 +4,11 @@ const routes = [
   {
     path: '/',
     exact: true,
+    component: null
+  },
+  {
+    path: '/login',
+    exact: false,
     component: Login
   }
 ]
