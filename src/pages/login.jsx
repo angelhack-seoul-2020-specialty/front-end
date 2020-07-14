@@ -55,6 +55,11 @@ const Login = () => {
   
   const handleSubmit = useCallback((e) => {
     e.preventDefault()
+    
+    if (!frmData.email || !frmData.password) {
+      return;
+    }
+    
     query({
       method: 'post',
       url: '/api/user',
@@ -69,8 +74,8 @@ const Login = () => {
         <Title>Sign in</Title>
   
         <Form onSubmit={handleSubmit}>
-          <TextField _label="email" name="email" type="email" onChange={handleChange} />
-          <PasswordField onChange={handleChange} />
+          <TextField _label="email" name="email" type="email" onChange={handleChange} required />
+          <PasswordField onChange={handleChange} required />
           
           <Button background round type="submit">Sign In</Button>
         </Form>
