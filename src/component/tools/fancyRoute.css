@@ -5,6 +5,5 @@
 }
 
 #nprogress .spinner-icon {
-    border-top-color: #bada55;
-    border-left-color: #bada55;
+    display: none;
 }
