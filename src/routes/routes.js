@@ -1,10 +1,10 @@
-import { Login } from '../pages/index'
+import { Main, Login } from '../pages/index'
 
 const routes = [
   {
     path: '/',
     exact: true,
-    component: null
+    component: Main
   },
   {
     path: '/login',
