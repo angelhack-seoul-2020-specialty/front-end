@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   display: block;
-  width: 100%;
   font-size: 1.25em;
-  padding: 15px 0;
   border: none;
   font-weight: bold;
   letter-spacing: 0.2px;
