@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import styled from 'styled-components';
-import {Icon} from '../atoms/iconButton';
+import {Icon} from '../atoms/icon';
 import {IoMdEye, IoMdEyeOff} from 'react-icons/io';
 import {TextField} from './textField';
 

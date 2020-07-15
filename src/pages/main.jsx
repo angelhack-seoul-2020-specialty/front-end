@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Content} from '../component/UI/organisims/content';
 import {Card} from '../component/UI/molecules/card.jsx';
 import {FaCrown} from 'react-icons/fa'
-import {Icon} from '../component/UI/atoms/iconButton';
+import {Icon} from '../component/UI/atoms/icon';
 import {TitleWithLink} from '../component/UI/molecules/titleWithLink';
 
 const Grid = styled.div`

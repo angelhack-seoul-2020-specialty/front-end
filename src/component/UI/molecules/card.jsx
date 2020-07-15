@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {Title} from '../atoms/Title';
-import {Icon} from '../atoms/iconButton';
+import {Icon} from '../atoms/icon';
 import {FiChevronDown, FiChevronUp} from 'react-icons/fi';
 import styled from 'styled-components';
 
