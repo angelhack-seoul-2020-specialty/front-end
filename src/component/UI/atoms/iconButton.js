@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-const IconButton = styled.button`
+const Icon = styled.span`
   display: inline-flex;
-  background-color: transparent;
-  border: none;
-  font-size: 1.65em;
-  cursor: pointer;
+  font-size: inherit;
+  outline: none;
 `;
 
-export { IconButton }
+export { Icon }

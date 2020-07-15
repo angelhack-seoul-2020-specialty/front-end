@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import styled from 'styled-components';
-import {IconButton} from '../atoms/iconButton';
+import {Icon} from '../atoms/iconButton';
 import {IoMdEye, IoMdEyeOff} from 'react-icons/io';
 import {TextField} from './textField';
 
@@ -8,10 +8,12 @@ const Cont = styled.div`
   position: relative;
   
   // 비밀번호 시각화 버튼
-  .sc-AxhCb.bpA-dpu {
+  .sc-AxhCb.cXtruK {
     position: absolute;
     bottom: 13px;
     right: 30px;
+    font-size: 1.65em;
+    cursor: pointer;
   }
 `;
 
@@ -41,9 +43,9 @@ const PasswordField = ({onChange, required}) => {
         />
         
         {valueLength ? (
-            <IconButton onClick={toggleShowPassword}>
+            <Icon onClick={toggleShowPassword}>
               {showPassword ? <IoMdEyeOff/> : <IoMdEye/>}
-            </IconButton>
+            </Icon>
         ) : null}
       </Cont>
   );
