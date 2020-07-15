@@ -12,26 +12,27 @@ const Cont = styled.div`
   box-shadow: -4px 4px 15px 0 rgba(75, 0, 0, 0.08);
   background-color: #ffffff;
   
-  h2 {
+  & > h2 {
     flex: 0 1 60%;
   }
   
-  div:nth-child(2) {
+  & > div:nth-child(2) {
     display: inline-flex;
     justify-content: flex-end;
     flex: 0 1 40%;
   }
   
-  div[type="toggle"] {
+  & > div[type="toggle"] {
     font-size: 1.3em;
   }
   
-  div:nth-child(3) {
-    margin-top: 10px;
+  & > div:nth-child(3) {
+    margin-top: 15px;
   }
 `;
 
 const Content = styled.div`
+  flex: 0 1 100%;
 `;
 
 const Card = ({title, fold, children}) => {
