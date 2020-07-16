@@ -73,7 +73,7 @@ const List = styled.ul`
 const Main = () => {
   return (
       <Content>
-        <TitleWithLink title={"Sam's Cafe"} href={"/#"} text={"수거 요청하기"} />
+        <TitleWithLink title={"Sam's Cafe"} href="/request" text={"수거 요청하기"} />
         
         <Card title="이번달 기부량">
           <h4>37kg</h4>
