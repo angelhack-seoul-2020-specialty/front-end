@@ -1,4 +1,4 @@
-import { Main, Login, LoginType, Requset } from '../pages/index'
+import { Main, Login, LoginType, Requset, History } from '../pages/index'
 
 const routes = [
   {
@@ -20,6 +20,16 @@ const routes = [
     path: '/request',
     exact: false,
     component: Requset
+  },
+  {
+    path: '/history',
+    exact: false,
+    component: History
+  },
+  {
+    path: '*',
+    exact: false,
+    children: '404 NOT FOUND'
   }
 ]
 
