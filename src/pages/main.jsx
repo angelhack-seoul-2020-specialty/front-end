@@ -75,6 +75,8 @@ const List = styled.ul`
 
 const Main = () => {
   const [amount, setAmount] = useState(0);
+  const [badges, setBadges] = useState([])
+  const [ranking, setRanking] = useState([])
   
   useEffect(() => {
     const user = decodeToken(getToken());
@@ -85,11 +87,25 @@ const Main = () => {
     })
         .then(res => setAmount(res.amount))
         .catch(err => console.error(err));
+  
+    query({
+      method: 'get',
+      url: `/api/${user.identity}/badge`,
+    })
+        .then(res => setBadges(res))
+        .catch(err => console.error(err));
+  
+    query({
+      method: 'get',
+      url: `/api/ranking`,
+    })
+        .then(res => setRanking(res))
+        .catch(err => console.error(err));
   }, [])
   
   return (
       <Content>
-        <TitleWithLink title={"Sam's Cafe"} href="/request" text={"수거 요청하기"} />
+        <TitleWithLink title={decodeToken(getToken()).user_claims.username} href="/request" text={"수거 요청하기"} />
         
         <Link to="/history">
           <Card title="이번달 기부량">
@@ -97,47 +113,26 @@ const Main = () => {
           </Card>
         </Link>
         
-        <Card title="5 Badges" fold>
+        <Card title={`${badges.length} Badges`} fold>
           <Grid>
-            <div><img src="/static/asset/badge/badge_1.svg" alt=""/> <h4>우리는 방법을...</h4></div>
-            <div><img src="/static/asset/badge/badge_2.svg" alt=""/> <h4>우수 커피점</h4></div>
-            <div><img src="/static/asset/badge/badge_3.svg" alt=""/> <h4>badge 3</h4></div>
-            <div><img src="/static/asset/badge/badge_4.svg" alt=""/> <h4>badge 4</h4></div>
-            <div><img src="/static/asset/badge/badge_5.svg" alt=""/> <h4>badge 5</h4></div>
+            {badges.map(i => (
+                <div key={i.name}>
+                  <img src={i.image_src} alt="뱃지" />
+                  <h4>{i.name}</h4>
+                </div>
+            ))}
           </Grid>
         </Card>
         
         <Card title="누적 기부량 랭킹" fold>
           <List>
-            <li>
-              <Icon><FaCrown /></Icon>
-              이원준 커피
-              <span>1,242 kg</span>
-            </li>
-            <li>
-              <Icon><FaCrown /></Icon>
-              김동준 커피
-              <span>944.1 kg</span></li>
-            <li>
-              <Icon><FaCrown /></Icon>
-              임지현 커피
-              <span>871.2 kg</span></li>
-            <li>
-              <span>4위</span>
-              강동현 커피
-              <span>821.5 kg</span>
-            </li>
-            <li>
-              <span>5위</span>
-              조준형 커피
-              <span>768.2 kg</span>
-            </li>
-            <div>...</div>
-            <li>
-              <span>7위</span>
-              Sam's Cafe (You)
-              <span>528.3 kg</span>
-            </li>
+            {ranking.map((_i, i) => (
+                <li key={_i.name}>
+                  <Icon>{i < 3 ? <FaCrown /> : `${i}위`}</Icon>
+                  {_i.name} {decodeToken(getToken()).user_claims.username === _i.name ? "(You)" : null}
+                  <span>{_i.amount.toFixed(1)} kg</span>
+                </li>
+            ))}
           </List>
         </Card>
       </Content>
