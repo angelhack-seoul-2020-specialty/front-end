@@ -5,6 +5,7 @@ import {Card} from '../component/UI/molecules/card.jsx';
 import {FaCrown} from 'react-icons/fa'
 import {Icon} from '../component/UI/atoms/icon';
 import {TitleWithLink} from '../component/UI/molecules/titleWithLink';
+import {Link} from 'react-router-dom'
 
 const Grid = styled.div`
   display: grid;
@@ -75,9 +76,11 @@ const Main = () => {
       <Content>
         <TitleWithLink title={"Sam's Cafe"} href="/request" text={"수거 요청하기"} />
         
-        <Card title="이번달 기부량">
-          <h4>37kg</h4>
-        </Card>
+        <Link to="/history">
+          <Card title="이번달 기부량">
+            <h4>37kg</h4>
+          </Card>
+        </Link>
         
         <Card title="5 Badges" fold>
           <Grid>
