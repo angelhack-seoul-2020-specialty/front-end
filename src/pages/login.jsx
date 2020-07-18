@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TextField } from '../component/UI/molecules/textField';
 import { PasswordField } from '../component/UI/molecules/passwordField';
 import { Button } from '../component/UI/atoms/button';
-import { query } from '../lib/qyery';
+import { query } from '../lib/query';
 
 const Cont = styled.div`
   display: grid;

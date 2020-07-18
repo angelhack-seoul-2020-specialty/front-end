@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Icon} from '../component/UI/atoms/icon';
 import {MdChevronLeft} from 'react-icons/md';
 import moment from 'moment';
-import {query} from '../lib/qyery';
+import {query} from '../lib/query';
 import {decodeToken, getToken} from '../lib/token';
 
 const Cont = styled.div`
