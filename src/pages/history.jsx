@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from '../component/UI/atoms/icon';
 import {MdChevronLeft} from 'react-icons/md';
+import moment from 'moment';
+import {query} from '../lib/qyery';
+import {decodeToken, getToken} from '../lib/token';
 
 const Cont = styled.div`
   padding: 30px;
@@ -39,14 +42,27 @@ const Content = styled.div``;
 
 const status = (stat) => {
   switch (stat) {
-    case 0 :
-      return "#582c0d";
-    case 1 :
-      return "#2ac1bc";
-    case 2 :
-      return "#e3cec5";
+    case "waiting" :
+      return '#582c0d';
+    case "on_way" :
+      return '#2ac1bc';
+    case "complete" :
+      return '#e3cec5';
     default :
-      return "#582c0d";
+      return '#582c0d';
+  }
+};
+
+const status_kor = (stat) => {
+  switch (stat) {
+    case "waiting" :
+      return '대기중';
+    case "on_way" :
+      return '가는중';
+    case "complete" :
+      return '수거 완료';
+    default :
+      return '대기중';
   }
 }
 
@@ -62,6 +78,19 @@ const Status = styled.span`
 `;
 
 function History({history}) {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    const user = decodeToken(getToken());
+    
+    query({
+      method: 'get',
+      url: `/api/${user.identity}/coffee`,
+    })
+        .then(res => setData(res))
+        .catch(err => console.error(err));
+  }, []);
+  
   return (
       <Cont>
         <Back>
@@ -74,51 +103,17 @@ function History({history}) {
           <h1>수요 누적 History</h1>
           
           <List>
-            <div>
-              <h3>
-                2020.07.08
-              </h3>
-              
-              <div>100kg</div>
-              
-              <Status stat={0}>수요 요청</Status>
-            </div>
-            <div>
-              <h3>
-                2020.07.08
-              </h3>
-    
-              <div>100kg</div>
-    
-              <Status stat={1}>오는 중</Status>
-            </div>
-            <div>
-              <h3>
-                2020.07.08
-              </h3>
-    
-              <div>100kg</div>
-    
-              <Status stat={2}>수거 완료</Status>
-            </div>
-            <div>
-              <h3>
-                2020.07.08
-              </h3>
-    
-              <div>100kg</div>
-    
-              <Status stat={2}>수거 완료</Status>
-            </div>
-            <div>
-              <h3>
-                2020.07.08
-              </h3>
-    
-              <div>100kg</div>
-    
-              <Status stat={2}>수거 완료</Status>
-            </div>
+            {data.map(i => (
+                <div key={i.timestamp}>
+                  <h3>
+                    {moment(i.timestamp).format('YYYY.MM.DD')}
+                  </h3>
+                  
+                  <div>{i.amount}kg</div>
+                  
+                  <Status stat={i.status}>{status_kor(i.status)}</Status>
+                </div>
+            ))}
           </List>
         </Content>
       </Cont>
