@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Content} from '../component/UI/organisims/content';
 import {Card} from '../component/UI/molecules/card.jsx';
@@ -6,6 +6,8 @@ import {FaCrown} from 'react-icons/fa'
 import {Icon} from '../component/UI/atoms/icon';
 import {TitleWithLink} from '../component/UI/molecules/titleWithLink';
 import {Link} from 'react-router-dom'
+import {query} from '../lib/query';
+import {decodeToken, getToken} from '../lib/token';
 
 const Grid = styled.div`
   display: grid;
@@ -72,13 +74,26 @@ const List = styled.ul`
 `
 
 const Main = () => {
+  const [amount, setAmount] = useState(0);
+  
+  useEffect(() => {
+    const user = decodeToken(getToken());
+  
+    query({
+      method: 'get',
+      url: `/api/${user.identity}/amount`,
+    })
+        .then(res => setAmount(res.amount))
+        .catch(err => console.error(err));
+  }, [])
+  
   return (
       <Content>
         <TitleWithLink title={"Sam's Cafe"} href="/request" text={"수거 요청하기"} />
         
         <Link to="/history">
           <Card title="이번달 기부량">
-            <h4>37kg</h4>
+            <h4>{amount} kg</h4>
           </Card>
         </Link>
         
