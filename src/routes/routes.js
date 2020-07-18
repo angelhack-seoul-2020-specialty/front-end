@@ -1,4 +1,4 @@
-import { Main, Login, LoginType, Requset, History } from '../pages/index'
+import { Main, Login, Request, History } from '../pages/index'
 
 const routes = [
   {
@@ -12,14 +12,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/login-type',
-    exact: false,
-    component: LoginType
-  },
-  {
     path: '/request',
     exact: false,
-    component: Requset
+    component: Request
   },
   {
     path: '/history',

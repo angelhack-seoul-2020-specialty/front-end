@@ -66,7 +66,7 @@ const Login = ({history}) => {
       data: frmData
     })
         .then(() => {
-          history.push('/login-type');
+          history.push('/');
         })
         .catch((err) => {
           console.log(err)
