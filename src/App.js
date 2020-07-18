@@ -8,9 +8,10 @@ import {decodeToken, getToken} from './lib/token';
 
 function App({history, location}) {
   useEffect(() => {
-    if (!document.cookie.includes("access_token_cookie")) {
+    if (!getToken()) {
       console.log('redirect')
       history.replace('/login')
+      return
     }
     
     const user = decodeToken(getToken());

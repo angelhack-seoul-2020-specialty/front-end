@@ -1,5 +1,5 @@
 const getToken = () => {
-  return document.cookie.match(new RegExp("(^| )access_token_cookie=([^;]+)"))[2] || null;
+  return document.cookie.match(new RegExp("(^| )access_token_cookie=([^;]+)"))[2];
 };
 
 const decodeToken = (string) => {
