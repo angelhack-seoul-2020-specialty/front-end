@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from '../component/UI/atoms/icon';
 import {MdChevronLeft} from 'react-icons/md';
 import {Button} from '../component/UI/atoms/button';
+import {query} from '../lib/query';
 
 const Cont = styled.div`
   display: grid;
@@ -74,6 +75,42 @@ const Grids = styled.div`
 `
 
 function Request({history}) {
+  const [reqAmount, setReqAmount] = useState(0);
+  
+  const handleRequest = useCallback(() => {
+    if (!reqAmount) {
+      alert('요청할 수 있는 커피박은 0kg 이상이여야 합니다!');
+      return
+    }
+    
+    query({
+      method: 'post',
+      url: '/api/coffee',
+      data: {
+        amount : reqAmount
+      }
+    })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 'success') {
+            alert('요청이 완료되었습니다.')
+          } else {
+            alert('요청을 하던 도중 문제가 발생했습니다.\n다시 시도해주세요.')
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        })
+  }, [reqAmount])
+  
+  const handleChange = useCallback((e) => {
+    setReqAmount(e.target.value)
+  }, [])
+  
+  const handleClick = useCallback((num) => {
+    setReqAmount(num)
+  }, [])
+  
   return (
       <Cont>
         <Back>
@@ -88,46 +125,43 @@ function Request({history}) {
           </div>
           
           <div>
-            <h2>1kg</h2>
+            <h2>{reqAmount}kg</h2>
           </div>
   
           <div>
-            <input type="range" />
+            <input type="range" step="0.5" min="0" max="4" onChange={handleChange} value={reqAmount} />
           </div>
           
           <div>
             <Grids>
-              <div>
+              <div onClick={() => handleClick(0.5)}>
                 0.5kg
               </div>
     
-    
-              <div>
+              <div onClick={() => handleClick(1)}>
                 1kg
               </div>
     
-    
-              <div>
+              <div onClick={() => handleClick(1.5)}>
                 1.5kg
               </div>
     
-    
-              <div>
+              <div onClick={() => handleClick(2)}>
                 2kg
               </div>
     
-              <div>
+              <div onClick={() => handleClick(3)}>
                 3kg
               </div>
     
-              <div>
+              <div onClick={() => handleClick(4)}>
                 4kg
               </div>
             </Grids>
 
           </div>
   
-          <Button background round>
+          <Button background round onClick={handleRequest}>
             수거 요청하기
           </Button>
         </Content>
