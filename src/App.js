@@ -4,7 +4,7 @@ import { FancyRoute } from './component/tools/fancyRoute';
 import { Helmet } from 'react-helmet';
 import routes from './routes/routes';
 import {query} from './lib/query';
-import {decodeToken, getToken} from './lib/token';
+import {getToken} from './lib/token';
 
 function App({history, location}) {
   useEffect(() => {
@@ -14,11 +14,9 @@ function App({history, location}) {
       return
     }
     
-    const user = decodeToken(getToken());
-  
     query({
       method: 'get',
-      url: `/api/${user.identity}/amount`,
+      url: `/api/cafeA@company.com/amount`,
     })
         .catch(err => {
           const error = err.toString()
