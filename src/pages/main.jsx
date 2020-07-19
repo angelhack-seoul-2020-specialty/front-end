@@ -17,6 +17,11 @@ const Grid = styled.div`
   grid-column-gap: 3%;
   grid-row-gap: 30px;
   
+  p {
+    color: #666;
+    text-align: center;
+  }
+  
   div {
     display: flex;
     align-items: center;
@@ -123,6 +128,8 @@ const Main = () => {
                 </div>
             ))}
           </Grid>
+  
+          {!badges.length ? (<p>뱃지가 없습니다 😰</p>) : ""}
         </Card>
         
         <Card title={`누적 ${classContent('기부', '요청')}량 랭킹`} fold>
