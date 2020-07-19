@@ -8,6 +8,10 @@ const Cont = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  h2 {
+    max-width: 140px;
+  }
 `
 
 const TitleWithLink = ({title, href, text}) => {
