@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Content} from '../component/UI/organisims/content';
 import {Card} from '../component/UI/molecules/card.jsx';
@@ -79,7 +79,7 @@ const List = styled.ul`
   }
 `
 
-const Main = () => {
+const Main = ({history}) => {
   const [amount, setAmount] = useState(0);
   const [badges, setBadges] = useState([])
   const [ranking, setRanking] = useState([])
@@ -107,6 +107,16 @@ const Main = () => {
     })
         .then(res => setRanking(res))
         .catch(err => console.error(err));
+  }, [])
+  
+  const onLogout = useCallback(() => {
+    const check = window.confirm('정말로 로그아웃 하시겠습니까?');
+    if (!check) return;
+  
+  
+    document.cookie = "access_token_cookie=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
+    console.log('redirect')
+    history.replace('/login')
   }, [])
   
   return (
@@ -143,6 +153,8 @@ const Main = () => {
             ))}
           </List>
         </Card>
+  
+        <b onClick={onLogout}>로그아웃</b>
       </Content>
   )
 };
