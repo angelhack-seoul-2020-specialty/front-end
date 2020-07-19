@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from '../component/UI/atoms/icon';
 import {MdChevronLeft} from 'react-icons/md';
@@ -77,6 +77,11 @@ const Grids = styled.div`
 
 function Request({history}) {
   const [reqAmount, setReqAmount] = useState(0);
+  const [reqOption, setReqOption] = useState([])
+  
+  useEffect(() => {
+    setReqOption(classContent([0.5, 1, 1.5, 2, 3, 4], [50, 100, 150, 200, 300, 400]))
+  }, [])
   
   const handleRequest = useCallback(() => {
     if (!reqAmount) {
@@ -135,29 +140,11 @@ function Request({history}) {
           
           <div>
             <Grids>
-              <div onClick={() => handleClick(0.5)}>
-                0.5kg
-              </div>
-    
-              <div onClick={() => handleClick(1)}>
-                1kg
-              </div>
-    
-              <div onClick={() => handleClick(1.5)}>
-                1.5kg
-              </div>
-    
-              <div onClick={() => handleClick(2)}>
-                2kg
-              </div>
-    
-              <div onClick={() => handleClick(3)}>
-                3kg
-              </div>
-    
-              <div onClick={() => handleClick(4)}>
-                4kg
-              </div>
+              {reqOption.map(i => (
+                  <div onClick={() => handleClick(i)} key={i}>
+                    {i}kg
+                  </div>
+              ))}
             </Grids>
 
           </div>
