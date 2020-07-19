@@ -101,7 +101,7 @@ function History({history}) {
         </Back>
         
         <Content>
-          <h1>{classContent('수요', '기부')} 누적 History</h1>
+          <h1>{classContent('기부', '요청')} 누적 History</h1>
           
           <List>
             {data.map(i => (
