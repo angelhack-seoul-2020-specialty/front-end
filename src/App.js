@@ -8,6 +8,10 @@ import {getToken} from './lib/token';
 
 function App({history, location}) {
   useEffect(() => {
+    console.log('1.0.2a')
+  }, [])
+  
+  useEffect(() => {
     if (!getToken()) {
       console.log('redirect')
       history.replace('/login')
