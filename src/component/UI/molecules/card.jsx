@@ -29,6 +29,13 @@ const Cont = styled.div`
   & > div:nth-child(3) {
     margin-top: 15px;
   }
+  
+  p {
+    color: #666;
+    text-align: center;
+    font-size: 15px;
+    padding: 30px 0;
+  }
 `;
 
 const Content = styled.div`
