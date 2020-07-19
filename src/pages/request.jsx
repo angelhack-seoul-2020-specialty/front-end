@@ -26,7 +26,6 @@ const Back = styled.div`
 const Content = styled.div`
   display: grid;
   grid-template-rows: 12% 25% 13% 31% 19%;
-  margin-left: -4px;
   
   & > div {
     display: flex;
@@ -56,8 +55,8 @@ const Content = styled.div`
 const Grids = styled.div`
   margin: auto;
   display: grid;
-  grid-template-columns: 80px 80px 80px;
-  grid-column-gap: 30px;
+  grid-template-columns: 4em 4em 4em;
+  grid-column-gap: 2em;
   grid-template-rows: 40px 40px;
   grid-row-gap: 10px;
   
