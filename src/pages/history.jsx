@@ -5,6 +5,7 @@ import {MdChevronLeft} from 'react-icons/md';
 import moment from 'moment';
 import {query} from '../lib/query';
 import {decodeToken, getToken} from '../lib/token';
+import {classContent} from '../lib/classContent';
 
 const Cont = styled.div`
   padding: 30px;
@@ -100,7 +101,7 @@ function History({history}) {
         </Back>
         
         <Content>
-          <h1>수요 누적 History</h1>
+          <h1>{classContent('수요', '기부')} 누적 History</h1>
           
           <List>
             {data.map(i => (

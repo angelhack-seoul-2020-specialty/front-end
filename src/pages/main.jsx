@@ -8,6 +8,7 @@ import {TitleWithLink} from '../component/UI/molecules/titleWithLink';
 import {Link} from 'react-router-dom'
 import {query} from '../lib/query';
 import {decodeToken, getToken} from '../lib/token';
+import {classContent} from '../lib/classContent';
 
 const Grid = styled.div`
   display: grid;
@@ -105,10 +106,10 @@ const Main = () => {
   
   return (
       <Content>
-        <TitleWithLink title={decodeToken(getToken()).user_claims.username} href="/request" text={"수거 요청하기"} />
+        <TitleWithLink title={decodeToken(getToken()).user_claims.username} href="/request" text={`${classContent('수거', '커피박')} 요청하기`} />
         
         <Link to="/history">
-          <Card title="이번달 기부량">
+          <Card title={`이번달 ${classContent('기부', '요청')}량`}>
             <h4>{amount} kg</h4>
           </Card>
         </Link>
@@ -124,7 +125,7 @@ const Main = () => {
           </Grid>
         </Card>
         
-        <Card title="누적 기부량 랭킹" fold>
+        <Card title={`누적 ${classContent('기부', '요청')}량 랭킹`} fold>
           <List>
             {ranking.map((_i, i) => (
                 <li key={_i.name}>

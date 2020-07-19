@@ -4,6 +4,7 @@ import {Icon} from '../component/UI/atoms/icon';
 import {MdChevronLeft} from 'react-icons/md';
 import {Button} from '../component/UI/atoms/button';
 import {query} from '../lib/query';
+import {classContent} from '../lib/classContent';
 
 const Cont = styled.div`
   display: grid;
@@ -121,7 +122,7 @@ function Request({history}) {
         
         <Content>
           <div>
-            <h1>커피박 있어요!</h1>
+            <h1>커피박 {classContent('있어', '필요해')}요!</h1>
           </div>
           
           <div>
@@ -162,7 +163,7 @@ function Request({history}) {
           </div>
   
           <Button background round onClick={handleRequest}>
-            수거 요청하기
+            {classContent('수거', '커피박')} 요청하기
           </Button>
         </Content>
       </Cont>
