@@ -8,7 +8,7 @@ const Cont = styled.div`
   position: relative;
   
   // 비밀번호 시각화 버튼
-  .sc-AxhCb.cXtruK {
+  span {
     position: absolute;
     bottom: 13px;
     right: 30px;
