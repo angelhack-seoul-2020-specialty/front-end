@@ -134,7 +134,7 @@ function Request({history}) {
           </div>
   
           <div>
-            <input type="range" step="0.5" min="0" max="4" onChange={handleChange} value={reqAmount} />
+            <input type="range" step={classContent(0.5, 10)} min={reqOption[0]} max={reqOption[5]} onChange={handleChange} value={reqAmount} />
           </div>
           
           <div>
