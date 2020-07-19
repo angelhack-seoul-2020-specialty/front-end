@@ -8,7 +8,7 @@ import {getToken} from './lib/token';
 
 function App({history, location}) {
   useEffect(() => {
-    console.log('1.0.2a')
+    console.log('1.0.3')
   }, [])
   
   useEffect(() => {
